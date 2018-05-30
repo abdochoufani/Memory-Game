@@ -29,6 +29,7 @@ body {
 }
 
 h1 {
+
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
 }
@@ -71,6 +72,10 @@ h1 {
     cursor: default;
 }
 
+.deck .card.open.lock{
+    pointer-events:none;
+}
+
 .deck .card.show {
     font-size: 33px;
 }
@@ -86,9 +91,16 @@ h1 {
  */
 
 .score-panel {
-    text-align: left;
-    width: 345px;
+    display: inline-flex;
+     font-family: 'Geostar';
+    text-align: center;
+    width: 635px;
+    padding-bottom: 5px;
     margin-bottom: 10px;
+}
+.score-panel .panel{
+    padding-top: 10px;
+    width: 33%;
 }
 
 .score-panel .stars {
@@ -103,7 +115,56 @@ h1 {
     display: inline-block;
 }
 
-.score-panel .restart {
+
+.score-panel .restart{
+    justify-content: center;
+    display: inline-flex;
+    width: 33%;
+}
+.time{
+    margin-left: 0;
+}
+
+.btn {
+    font-size:1.1em;
+    margin-left: 80px;
     float: right;
+    border: none;
+    background-color: inherit;
+    padding: 14px 28px;
+    font-size: 16px;
     cursor: pointer;
+    display: inline-block;
+    
+}
+
+.btn:hover {background: #eee;}
+
+.success {color: green;}
+
+
+.restart-btn{
+    margin-left: 50px;
+    padding-top: 10px;
+}
+
+.score-panel .time{
+    margin-right:15px;
+    margin-left:50px;
+    padding-top: 10px;
+    
+}
+.instructions{
+    text-align: center;
+    width:625px;
+    border-right: double;
+    border-left: double;
+}
+.instructions .instruction-list{
+    list-style-type: none;
+}
+
+.you-win{
+    font-style: bold;
+
 }
