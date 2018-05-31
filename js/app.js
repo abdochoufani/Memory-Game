@@ -81,7 +81,7 @@ if(preCard.innerHTML === currentCard.innerHTML){
 function isOver(){
 	if(matchedCards.length === cardSet.length){
 	setTimeout(function(){
- 	 alert('Congrats!! You are a smart one.Try again by pressing the reset button');
+ 	gameOver();
  	},400);
  	stopTimer();
  	isStart=false;
@@ -198,3 +198,31 @@ reset.addEventListener('click',function (){
 inital();
 
 });
+
+
+
+
+var modal = document.getElementById('myModal');
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+function startModal() {
+    modal.style.display = "block";
+}
+function gameOver(){
+  startModal();
+// When the user clicks on <span> (x), close the modal
+
+span.addEventListener ('click', function() {
+    modal.style.display = "none";
+});
+
+// When the user clicks anywhere outside of the modal, close it
+window.addEventListener( 'click',function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+  });
+}
