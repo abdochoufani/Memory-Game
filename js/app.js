@@ -80,11 +80,11 @@ if(preCard.innerHTML === currentCard.innerHTML){
 //check if the game is over
 function isOver(){
 	if(matchedCards.length === cardSet.length){
+		isStart=false;
 	setTimeout(function(){
  	gameOver();
  	},400);
- 	stopTimer();
- 	isStart=false;
+
   }
 }
 
@@ -112,40 +112,42 @@ function addMove(){
 
 //Star rating
 const ratingContainer= document.querySelector('.stars');
+let starsNb=0;
 const star = '<i class="fa fa-star"></i>';
 ratingContainer.innerHTML = star + star + star;
 function rating(){
 if(move<=15){
 ratingContainer.innerHTML=star+star+star;
+starsNb=3;
 }else if (move<=20){
 	ratingContainer.innerHTML=star+star;
+	starsNb=2;
 }else{
 ratingContainer.innerHTML=star;
+starsNb=1;
+   }
 }
-}
 
 
-
+//stop timer
 
 //Timer
 const timeContainer=document.querySelector('.time');
 let time=0;
-
+var startTimer= setInterval(timerStart,1000);
 //start timer
+//this function will happen every 1000ms=1s
 function timerStart(){
 if (isStart){
-	//this function will happen every 1000ms=1s
-	setInterval(function (){
         time++;
-        timeContainer.innerHTML= '  '+ time + '  sec';
-	},1000);
-   }
+        timeContainer.innerHTML= time + '  sec';
+    }
 }
 
-//stop timer
 function stopTimer(){
-	clearInterval(timerStart());
-	}
+	clearInterval(startTimer);
+}
+
 
 
 
@@ -189,6 +191,7 @@ reset.addEventListener('click',function (){
 	theDeck.innerHTML='';
 	cardsOpen =[];
 	move=0;
+	starsNb=0;
 	matchedCards=[];
 	ratingContainer.innerHTML = star + star + star;
 	movesContainer.innerHTML = move;
@@ -206,6 +209,12 @@ var modal = document.getElementById('myModal');
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
+
+
+let score= ((1000 * starsNb)-move)/time;
+
+const modalContent=document.querySelector('.modal-text');
+modalContent.innerHTML='Congratulations!!<br/> you have finished the game in '+ time +' seconds. <br/> It took you only '+ move + ' moves.<br/> '+ starsNb + ' stars.<br/> Your final score is ' + score;
 
 // When the user clicks on the button, open the modal
 function startModal() {
@@ -225,4 +234,5 @@ window.addEventListener( 'click',function(event) {
         modal.style.display = "none";
     }
   });
+    stopTimer();
 }
