@@ -12,8 +12,6 @@ let matchedCards=[];
 const theDeck = document.querySelector('.deck');
 const start = document.querySelector('.btn');
 const instruction= document.querySelector('.instructions');
-let isStart=false;
-console.log(isStart);
 let score;
 
 
@@ -83,8 +81,6 @@ if(preCard.innerHTML === currentCard.innerHTML){
 function isOver(){
 	if(matchedCards.length === cardSet.length){
 		score= ((1000 * starsNb)-move)/time;
-		isStart=false;
-		console.log(isStart);
 	setTimeout(function(){
  	gameOver();
  	},400);
@@ -109,7 +105,6 @@ function addMove(){
    }else{
 	movesContainer.innerHTML = move +' moves';
 }
-	console.log(move);
 	rating();
 
 }
@@ -134,12 +129,13 @@ starsNb=1;
 }
 
 
-//stop timer
+
 
 //Timer
 const timeContainer=document.querySelector('.time');
 let time=0;
-
+//start timer
+//this function will happen every 1000ms=1s
  var startTimer;
 function timerStart(){
  startTimer= setInterval(function (){
@@ -147,8 +143,7 @@ function timerStart(){
   timeContainer.innerHTML= time + '  sec';
     },1000);
 }
-//start timer
-//this function will happen every 1000ms=1s
+//stop timer
 function stopTimer(){
 	clearInterval(startTimer);
 }
@@ -182,7 +177,6 @@ function addResetBtn(){
 
 //start the game for the first time
 start.addEventListener('click', function(){
-	isStart=true;
 	instruction.style.display='none';
     inital();
 	addResetBtn();
@@ -202,7 +196,6 @@ reset.addEventListener('click',function (){
 	stopTimer();
 	time=0;
 	score=0;
-	console.log(isStart);
     inital();
 });
 
