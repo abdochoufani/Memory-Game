@@ -14,6 +14,7 @@ const start = document.querySelector('.btn');
 const instruction= document.querySelector('.instructions');
 let isStart=false;
 console.log(isStart);
+let score;
 
 
 
@@ -27,6 +28,7 @@ console.log(isStart);
         theDeck.appendChild(cards);
         clickedCard(cards);
      }
+     timerStart();
      start.style.display='none';
 
 
@@ -44,7 +46,7 @@ function clickedCard(cards){
 	if (cardsOpen.length === 1){
 		currentCard.classList.add('open','show');
 		cardsOpen.push(currentCard);
-  compareCards(preCard, currentCard);
+        compareCards(preCard, currentCard);
   //if no cards are open
 	}else{
 		currentCard.classList.add('open','show','lock');
@@ -65,9 +67,9 @@ if(preCard.innerHTML === currentCard.innerHTML){
 		cardsOpen=[];
 	}else{
 		setTimeout(function (){
-			preCard.classList.remove('open','show');
+		preCard.classList.remove('open','show');
 		currentCard.classList.remove('open','show');
-	}, 500);
+	}, 700);
 		cardsOpen=[];
     }
     addMove();
@@ -80,10 +82,13 @@ if(preCard.innerHTML === currentCard.innerHTML){
 //check if the game is over
 function isOver(){
 	if(matchedCards.length === cardSet.length){
+		score= ((1000 * starsNb)-move)/time;
 		isStart=false;
+		console.log(isStart);
 	setTimeout(function(){
  	gameOver();
  	},400);
+ 	stopTimer();
 
   }
 }
@@ -134,16 +139,16 @@ starsNb=1;
 //Timer
 const timeContainer=document.querySelector('.time');
 let time=0;
-var startTimer= setInterval(timerStart,1000);
+
+ var startTimer;
+function timerStart(){
+ startTimer= setInterval(function (){
+  time++;
+  timeContainer.innerHTML= time + '  sec';
+    },1000);
+}
 //start timer
 //this function will happen every 1000ms=1s
-function timerStart(){
-if (isStart){
-        time++;
-        timeContainer.innerHTML= time + '  sec';
-    }
-}
-
 function stopTimer(){
 	clearInterval(startTimer);
 }
@@ -180,7 +185,6 @@ start.addEventListener('click', function(){
 	isStart=true;
 	instruction.style.display='none';
     inital();
-    timerStart();
 	addResetBtn();
 
 });
@@ -195,11 +199,11 @@ reset.addEventListener('click',function (){
 	matchedCards=[];
 	ratingContainer.innerHTML = star + star + star;
 	movesContainer.innerHTML = move;
+	stopTimer();
 	time=0;
-	isStart=true;
+	score=0;
 	console.log(isStart);
-inital();
-
+    inital();
 });
 
 
@@ -211,16 +215,16 @@ var modal = document.getElementById('myModal');
 var span = document.getElementsByClassName("close")[0];
 
 
-let score= ((1000 * starsNb)-move)/time;
 
-const modalContent=document.querySelector('.modal-text');
-modalContent.innerHTML='Congratulations!!<br/> you have finished the game in '+ time +' seconds. <br/> It took you only '+ move + ' moves.<br/> '+ starsNb + ' stars.<br/> Your final score is ' + score;
 
 // When the user clicks on the button, open the modal
 function startModal() {
     modal.style.display = "block";
 }
 function gameOver(){
+const modalContent=document.querySelector('.modal-text');
+modalContent.innerHTML='Congratulations!!<br/> you have finished the game in '+ time +' seconds. <br/> It took you only '+ move + ' moves.<br/> '+ ratingContainer.innerHTML + '<br/> Your final score is ' + score.toFixed(0) + ' over 100' ;
+
   startModal();
 // When the user clicks on <span> (x), close the modal
 
