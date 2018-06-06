@@ -1,10 +1,6 @@
 # Memory Game Project
 
 ##
- Table of Contents
-
-* 
-[Instructions]
 (#instructions)
 * 
 This project is part of Udacity front-End Web Developer nanodegree.
