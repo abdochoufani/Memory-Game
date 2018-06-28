@@ -18,11 +18,11 @@ Clone github repository https://github.com/abdochoufani/Memory-Game.git
 
 #External libraries:##
 
-` <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-  <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
-  <link href='https://fonts.googleapis.com/css?family=Geostar' rel='stylesheet'>
-  <link rel="stylesheet" href="css/app.css">
-  <link href='https://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet'>`
+` <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">`
+`<link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">`
+`<link href='https://fonts.googleapis.com/css?family=Geostar' rel='stylesheet'>`
+`<link rel="stylesheet" href="css/app.css">`
+`<link href='https://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet'>`
 
 
 #
